@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
-                <Link to="/" className="btn btn-ghost normal-case text-xl">Doctors Portal</Link>
+                <NavLink className={({ isActive }) =>
+                    isActive ? "bg-accent text-white btn btn-ghost normal-case text-xl" : "btn btn-ghost normal-case text-xl"
+                } to="/">Doctors Portal</NavLink>
             </div>
             <div className="navbar-end">
                 <div className="dropdown">
@@ -14,46 +16,73 @@ const Navbar = () => {
                     </label>
                     <ul tabindex="0" className="menu menu-compact dropdown-content mt-3 relative right-1 p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
-                            <Link to="/home"><button className='btn btn-accent text-white'>Home</button></Link>
+                            <NavLink className={({ isActive }) =>
+                                isActive ? "bg-accent text-white" : ""
+                            } to="/home">Home</NavLink>
                         </li>
                         <li>
-                            <Link to="/about">About</Link>
+                            <NavLink className={({ isActive }) =>
+                                isActive ? "bg-accent text-white" : ""
+                            } to="/about">About</NavLink>
                         </li>
                         <li>
-                            <Link to="/appointment">Appointment</Link>
+                            <NavLink className={({ isActive }) =>
+                                isActive ? "bg-accent text-white" : ""
+                            } to="/appointment">Appointment</NavLink>
                         </li>
                         <li>
-                            <Link to="/reviews">Reviews</Link>
+                            <NavLink className={({ isActive }) =>
+                                isActive ? "bg-accent text-white" : ""
+                            } to="/reviews">Reviews</NavLink>
                         </li>
                         <li>
-                            <Link to="/contactUs">Contact Us</Link>
+                            <NavLink className={({ isActive }) =>
+                                isActive ? "bg-accent text-white" : ""
+                            } to="/contactUs">Contact Us</NavLink>
                         </li>
                         <li>
-                            <Link to="/login">Login</Link>
+                            <NavLink className={({ isActive }) =>
+                                isActive ? "bg-accent text-white" : ""
+                            } to="/login">Login</NavLink>
                         </li>
 
                     </ul>
                 </div>
             </div>
+
+
+
             <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal p-0 absolute">
                     <li>
-                        <Link to="/home"><button className='btn btn-accent text-white'>Home</button></Link>
+                        <NavLink className={({ isActive }) =>
+                            isActive ? "bg-accent text-white" : ""
+                        } to="/home">Home</NavLink>
                     </li>
                     <li>
-                        <Link to="/about">About</Link>
+                        <NavLink className={({ isActive }) =>
+                            isActive ? "bg-accent text-white" : ""
+                        } to="/about">About</NavLink>
                     </li>
                     <li>
-                        <Link to="/appointment">Appointment</Link>
+                        <NavLink className={({ isActive }) =>
+                            isActive ? "bg-accent text-white" : ""
+                        } to="/appointment">Appointment</NavLink>
                     </li>
                     <li>
-                        <Link to="/reviews">Reviews</Link>
+                        <NavLink className={({ isActive }) =>
+                            isActive ? "bg-accent text-white" : ""
+                        } to="/reviews">Reviews</NavLink>
                     </li>
                     <li>
-                        <Link to="/contactus">Contact Us</Link>
+                        <NavLink className={({ isActive }) =>
+                            isActive ? "bg-accent text-white" : ""
+                        } to="/contactus">Contact Us</NavLink>
                     </li>
                     <li>
-                        <Link to="/login">Login</Link>
+                        <NavLink className={({ isActive }) =>
+                            isActive ? "bg-accent text-white" : ""
+                        } to="/login">Login</NavLink>
                     </li>
                 </ul>
             </div>
