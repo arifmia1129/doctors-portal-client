@@ -7,9 +7,9 @@ import img3 from "../../../assets/images/whitening.png";
 
 const Services = () => {
     const services = [
-        { id: 1, img: img1, name: "Fluoride Treatment", description: "We provide services to you in such a way that you are healthy and satisfied. We have a panel of specialist doctors to provide these services. So you can safely accept any of our services." },
-        { id: 2, img: img2, name: "Cavity Filling", description: "We provide services to you in such a way that you are healthy and satisfied. We have a panel of specialist doctors to provide these services. So you can safely accept any of our services." },
-        { id: 3, img: img1, name: "Teeth Whitening", description: "We provide services to you in such a way that you are healthy and satisfied. We have a panel of specialist doctors to provide these services. So you can safely accept any of our services." }
+        { _id: 1, img: img1, name: "Fluoride Treatment", description: "We provide services to you in such a way that you are healthy and satisfied. We have a panel of specialist doctors to provide these services. So you can safely accept any of our services." },
+        { _id: 2, img: img2, name: "Cavity Filling", description: "We provide services to you in such a way that you are healthy and satisfied. We have a panel of specialist doctors to provide these services. So you can safely accept any of our services." },
+        { _id: 3, img: img1, name: "Teeth Whitening", description: "We provide services to you in such a way that you are healthy and satisfied. We have a panel of specialist doctors to provide these services. So you can safely accept any of our services." }
     ]
     return (
         <div className='my-10'>
@@ -17,10 +17,10 @@ const Services = () => {
                 <p className='text-secondary font-bold'>OUR SERVICES</p>
                 <h3 className='text-accent text-3xl'>Services We Provide</h3>
             </div>
-            <div className='grid grid-cols-1 lg:grid-cols-3 mt-10 gap-10'>
+            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10 gap-10'>
                 {
                     services.map(service => <Service
-                        key={service.id}
+                        key={service._id}
                         service={service}
                     />)
                 }
