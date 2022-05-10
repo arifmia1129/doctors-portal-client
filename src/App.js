@@ -11,7 +11,7 @@ import Login from './pages/Authentication/Login';
 
 function App() {
   return (
-    <div>
+    <div className="lg:px-12 px-2">
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home />} />

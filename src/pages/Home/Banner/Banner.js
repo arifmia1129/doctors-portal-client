@@ -3,7 +3,7 @@ import chair from "../../../assets/images/chair.png";
 
 const Banner = () => {
     return (
-        <div className="hero lg:mt-24">
+        <div className="hero bg-[url('/src/assets/images/bg.png')] bg-cover lg:py-20">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className='md:px-10'>
                     <img src={chair} alt="banner-img" className="image-full rounded-lg shadow-2xl" />
@@ -11,7 +11,7 @@ const Banner = () => {
                 <div>
                     <h1 className="text-4xl font-bold text-accent">Your New Smile Starts Here</h1>
                     <p className="py-6">We want to make you laugh. I want to see your beautiful smile. I want to show your beautiful smile to the world. Let's laugh together.</p>
-                    <button className="btn btn-primary text-white font-bold">Get Started</button>
+                    <button className="btn bg-gradient-to-r from-secondary to-primary text-white font-bold uppercase border-0">Get Started</button>
                 </div>
             </div>
         </div>
