@@ -8,6 +8,7 @@ import Appointment from './pages/Appointment/Appointment';
 import Reviews from './pages/Reviews/Reviews';
 import Contact from './pages/Contact/Contact';
 import Login from './pages/Authentication/Login';
+import Footer from './pages/Shared/Footer/Footer';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={<Login />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
