@@ -16,7 +16,7 @@ const AppointmentBanner = () => {
                             <h1 className="lg:text-5xl text-4xl font-bold text-white">Make an appointment Today</h1>
                             <p className="py-6">If you want our best service, doctor and others please make sure doctor appointment. If you want to doctor appointment please click under the button and follow instruction. It's very simple step. So try now!</p>
                         </div>
-                        <PrimaryButton />
+                        <PrimaryButton>Get Started</PrimaryButton>
                     </div>
                 </div>
             </div>
