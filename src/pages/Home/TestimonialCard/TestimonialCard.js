@@ -12,7 +12,7 @@ const TestimonialCard = ({ singleComment }) => {
                 <div className="flex justify-start items-center">
                     <div>
                         <div className="avatar pr-5">
-                            <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                            <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                 <img src={img} alt='avatar' />
                             </div>
                         </div>

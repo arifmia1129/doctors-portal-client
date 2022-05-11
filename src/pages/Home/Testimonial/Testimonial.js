@@ -18,7 +18,7 @@ const Testimonial = () => {
                     <p className='text-xl text-secondary'>Testimonial</p>
                     <h1 className='text-4xl text-accent font-bold'>What Our Patients Says</h1>
                 </div>
-                <div>
+                <div className='lg:w-48 w-24'>
                     <img src={quote} alt="" />
                 </div>
             </div>

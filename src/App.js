@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './pages/Shared/Navbar/Navbar';
 import { Route, Routes } from 'react-router-dom';
@@ -8,11 +7,10 @@ import Appointment from './pages/Appointment/Appointment';
 import Reviews from './pages/Reviews/Reviews';
 import Contact from './pages/Contact/Contact';
 import Login from './pages/Authentication/Login';
-import Footer from './pages/Shared/Footer/Footer';
 
 function App() {
   return (
-    <div className="lg:px-12 px-2">
+    <div className="max-w-7xl mx-auto lg:px-12 px-2">
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home />} />
@@ -23,7 +21,6 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={<Login />} />
       </Routes>
-      <Footer />
     </div>
   );
 }
