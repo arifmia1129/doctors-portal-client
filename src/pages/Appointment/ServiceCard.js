@@ -1,7 +1,6 @@
 import React from 'react';
-import PrimaryButton from '../Shared/PrimaryButton/PrimaryButton';
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, setTreatment }) => {
     const { name, slots } = service;
     return (
         <div className="card bg-base-100 shadow-xl py-3">
@@ -10,7 +9,7 @@ const ServiceCard = ({ service }) => {
                 <p className='uppercase'>
                     {
                         slots?.length ? slots[0] : <>
-                            <span className='text-red-500'>Try another space.</span>
+                            <span className='text-red-500'>Try another day.</span>
                         </>
                     }
                 </p>
@@ -20,7 +19,7 @@ const ServiceCard = ({ service }) => {
                     }
                 </p>
                 <div className="card-actions justify-center py-2">
-                    <PrimaryButton>Book Appointment</PrimaryButton>
+                    <label disabled={slots.length === 0} onClick={() => setTreatment(service)} htmlFor="booking-modal" className="btn bg-gradient-to-r from-secondary to-primary text-white border-0 modal-button" >Book Appointment</label>
                 </div>
             </div>
         </div>
