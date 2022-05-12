@@ -32,7 +32,6 @@ const SignUp = () => {
     }
 
     if (user || gUser) {
-        console.log(user);
         navigate("/appointment");
     }
 
