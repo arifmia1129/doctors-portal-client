@@ -5,32 +5,32 @@ const Navbar = () => {
     const navLink = <>
         <li>
             <NavLink className={({ isActive }) =>
-                isActive ? "bg-accent text-white" : ""
+                isActive ? "bg-gradient-to-r from-secondary to-primary text-white" : ""
             } to="/home">Home</NavLink>
         </li>
         <li>
             <NavLink className={({ isActive }) =>
-                isActive ? "bg-accent text-white" : ""
+                isActive ? "bg-gradient-to-r from-secondary to-primary text-white" : ""
             } to="/about">About</NavLink>
         </li>
         <li>
             <NavLink className={({ isActive }) =>
-                isActive ? "bg-accent text-white" : ""
+                isActive ? "bg-gradient-to-r from-secondary to-primary text-white" : ""
             } to="/appointment">Appointment</NavLink>
         </li>
         <li>
             <NavLink className={({ isActive }) =>
-                isActive ? "bg-accent text-white" : ""
+                isActive ? "bg-gradient-to-r from-secondary to-primary text-white" : ""
             } to="/reviews">Reviews</NavLink>
         </li>
         <li>
             <NavLink className={({ isActive }) =>
-                isActive ? "bg-accent text-white" : ""
+                isActive ? "bg-gradient-to-r from-secondary to-primary text-white" : ""
             } to="/contact">Contact Us</NavLink>
         </li>
         <li>
             <NavLink className={({ isActive }) =>
-                isActive ? "bg-accent text-white" : ""
+                isActive ? "bg-gradient-to-r from-secondary to-primary text-white" : ""
             } to="/login">Login</NavLink>
         </li>
     </>
@@ -38,7 +38,7 @@ const Navbar = () => {
         <div className="navbar bg-base-100">
             <div className="navbar-start">
                 <NavLink className={({ isActive }) =>
-                    isActive ? "bg-accent text-white btn btn-ghost normal-case text-xl" : "btn btn-ghost normal-case text-xl"
+                    isActive ? "bg-gradient-to-r from-secondary to-primary text-white btn btn-ghost normal-case text-xl" : "btn btn-ghost normal-case text-xl"
                 } to="/">Doctors Portal</NavLink>
             </div>
             <div className="navbar-end">

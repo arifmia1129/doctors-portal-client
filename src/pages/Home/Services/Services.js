@@ -9,7 +9,7 @@ const Services = () => {
     const services = [
         { _id: 1, img: img1, name: "Fluoride Treatment", description: "We provide services to you in such a way that you are healthy and satisfied. We have a panel of specialist doctors to provide these services. So you can safely accept any of our services." },
         { _id: 2, img: img2, name: "Cavity Filling", description: "We provide services to you in such a way that you are healthy and satisfied. We have a panel of specialist doctors to provide these services. So you can safely accept any of our services." },
-        { _id: 3, img: img1, name: "Teeth Whitening", description: "We provide services to you in such a way that you are healthy and satisfied. We have a panel of specialist doctors to provide these services. So you can safely accept any of our services." }
+        { _id: 3, img: img3, name: "Teeth Whitening", description: "We provide services to you in such a way that you are healthy and satisfied. We have a panel of specialist doctors to provide these services. So you can safely accept any of our services." }
     ]
     return (
         <div className='my-10'>
