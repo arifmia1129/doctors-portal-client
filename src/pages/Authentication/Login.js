@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
@@ -27,13 +27,16 @@ const Login = () => {
         signInWithEmailAndPassword(data.email, data.password);
     };
 
+    useEffect(() => {
+        if (user || gUser) {
+            navigate(from, { replace: true });
+        }
+    }, [user, gUser, from, navigate]);
+
     if (loading || gLoading) {
         return <Loading />
     }
 
-    if (user || gUser) {
-        navigate(from, { replace: true });
-    }
 
     if (error || gError) {
         signInError = <p className='text-red-500'><small>{error?.message.split(":")[1] || gError?.message.split(":")[1]}</small></p>

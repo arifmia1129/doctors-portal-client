@@ -1,9 +1,11 @@
 import { format } from 'date-fns';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const BookingModal = ({ treatment, date, setTreatment }) => {
     const { slots, name, _id } = treatment;
-
+    const [user] = useAuthState(auth);
     const handleSubmit = (e) => {
         e.preventDefault();
         const timeSlot = e.target.slot.value;
@@ -26,13 +28,16 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
                         <select name='slot' className="select select-bordered w-full max-w-xs">
 
                             {
-                                slots?.map(slot => <option
-                                    value={slot}>{slot}</option>)
+                                slots?.map((slot, index) => <option
+                                    key={index}
+                                    value={slot}
+                                >{slot}
+                                </option>)
                             }
                         </select>
-                        <input type="text" name="name" placeholder="Type your name" className="input input-bordered w-full max-w-xs" />
-                        <input type="email" name="email" placeholder="Type email" className="input input-bordered w-full max-w-xs" />
-                        <input type="text" name="phone" placeholder="Type phone no" className="input input-bordered w-full max-w-xs" />
+                        <input type="text" name="name" readOnly value={user?.displayName} className="input input-bordered w-full max-w-xs" />
+                        <input type="email" name="email" readOnly value={user?.email} className="input input-bordered w-full max-w-xs" />
+                        <input required type="text" name="phone" placeholder="Type phone no" className="input input-bordered w-full max-w-xs" />
                         <input type="submit" value="Confirm Book" className="btn bg-gradient-to-r from-secondary to-primary text-white font-bold uppercase border-0" />
                     </form>
                 </div>
