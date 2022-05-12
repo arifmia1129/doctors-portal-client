@@ -1,27 +1,27 @@
 import React from 'react';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Loading from '../Shared/Loading';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const SignUp = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
     const [
-        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useSignInWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth);
 
     let signInError;
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        signInWithEmailAndPassword(data.email, data.password);
         console.log(data);
+        createUserWithEmailAndPassword(data.email, data.password);
+
     };
 
     if (loading || gLoading) {
@@ -35,15 +35,32 @@ const Login = () => {
     if (error || gError) {
         signInError = <p className='text-red-500'><small>{error?.message.split(":")[1] || gError?.message.split(":")[1]}</small></p>
     }
-
     return (
         <div className='flex justify-center items-center h-4/5'>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h2 className="text-2xl font-bold text-secondary text-center">Login</h2>
+                    <h2 className="text-2xl font-bold text-secondary text-center">Sign Up</h2>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
 
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input
+                                {...register("name", {
+                                    required: {
+                                        value: true,
+                                        message: "Name field is required."
+                                    }
+                                })}
+                                type="text"
+                                placeholder="Type Name"
+                                className="input input-bordered w-full max-w-xs" />
+                            <label className="label">
+                                {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
+                            </label>
+                        </div>
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -93,10 +110,10 @@ const Login = () => {
                         <div className='pb-3'>
                             {signInError}
                         </div>
-                        <input className='btn btn-secondary text-white w-full max-w-xs bg-gradient-to-r from-secondary to-primary' type="submit" value="Login" />
+                        <input className='btn btn-secondary text-white w-full max-w-xs bg-gradient-to-r from-secondary to-primary' type="submit" value="Sign Up" />
                     </form>
 
-                    <p className='text-center'><small>New to doctors portal? <Link className='text-secondary font-bold' to="/signup">Sign Up Now</Link></small></p>
+                    <p className='text-center'><small>Already have an account? <Link className='text-secondary font-bold' to="/login">Login Now</Link></small></p>
 
                     <div className="divider text-secondary">OR</div>
                     <button
@@ -109,4 +126,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
