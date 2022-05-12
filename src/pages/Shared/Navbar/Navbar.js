@@ -1,7 +1,11 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
+import auth from '../../../firebase.init';
 
 const Navbar = () => {
+    const [user] = useAuthState(auth);
     const navLink = <>
         <li>
             <NavLink className={({ isActive }) =>
@@ -29,9 +33,14 @@ const Navbar = () => {
             } to="/contact">Contact Us</NavLink>
         </li>
         <li>
-            <NavLink className={({ isActive }) =>
-                isActive ? "bg-gradient-to-r from-secondary to-primary text-white" : ""
-            } to="/login">Login</NavLink>
+            {
+                user ?
+                    <button onClick={() => signOut(auth)} className="btn btn-ghost">Sign Out</button>
+                    :
+                    <NavLink className={({ isActive }) =>
+                        isActive ? "bg-gradient-to-r from-secondary to-primary text-white" : ""
+                    } to="/login">Login</NavLink>
+            }
         </li>
     </>
     return (
