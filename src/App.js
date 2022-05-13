@@ -9,6 +9,7 @@ import Contact from './pages/Contact/Contact';
 import Login from './pages/Authentication/Login';
 import SignUp from './pages/Authentication/SignUp';
 import RequireAuth from './pages/Authentication/RequireAuth';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (

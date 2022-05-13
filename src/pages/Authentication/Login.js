@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import React, { useEffect, useState } from 'react';
+import { useSendPasswordResetEmail, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Loading from '../Shared/Loading';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -22,7 +23,10 @@ const Login = () => {
     let from = location.state?.from?.pathname || "/";
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-
+    const [email, setEmail] = useState("");
+    const [sendPasswordResetEmail, sending, RError] = useSendPasswordResetEmail(
+        auth
+    );
     const onSubmit = (data) => {
         signInWithEmailAndPassword(data.email, data.password);
     };
@@ -33,13 +37,23 @@ const Login = () => {
         }
     }, [user, gUser, from, navigate]);
 
-    if (loading || gLoading) {
+    if (loading || gLoading || sending) {
         return <Loading />
     }
 
 
-    if (error || gError) {
+    if (error || gError || RError) {
         signInError = <p className='text-red-500'><small>{error?.message.split(":")[1] || gError?.message.split(":")[1]}</small></p>
+    }
+
+    const passwordReset = async () => {
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast.success("Send email for reset password");
+        }
+        else {
+            toast.error("Enter your valid email and then try again.")
+        }
     }
 
     return (
@@ -65,6 +79,7 @@ const Login = () => {
                                         message: 'Enter a valid email address.'
                                     }
                                 })}
+                                onChange={(e) => setEmail(e?.target?.value)}
                                 type="email"
                                 placeholder="Type Email"
                                 className="input input-bordered w-full max-w-xs" />
@@ -81,7 +96,7 @@ const Login = () => {
                                 {...register("password", {
                                     required: {
                                         value: true,
-                                        message: "Email field is required."
+                                        message: "Password field is required."
                                     },
                                     minLength: {
                                         value: 6,
@@ -95,10 +110,15 @@ const Login = () => {
                                 {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                                 {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                             </label>
+
+                        </div>
+                        <div>
+                            <button onClick={passwordReset} className='text-secondary'><small>Forgot password?</small></button>
                         </div>
                         <div className='pb-3'>
                             {signInError}
                         </div>
+
                         <input className='btn btn-secondary text-white w-full max-w-xs bg-gradient-to-r from-secondary to-primary' type="submit" value="Login" />
                     </form>
 
@@ -111,6 +131,7 @@ const Login = () => {
                     </button>
                 </div>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
