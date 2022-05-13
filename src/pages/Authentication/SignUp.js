@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
@@ -13,7 +13,7 @@ const SignUp = () => {
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
@@ -27,12 +27,14 @@ const SignUp = () => {
         await updateProfile({ displayName: data.name });
     };
 
+    useEffect(() => {
+        if (user || gUser) {
+            navigate("/appointment");
+        }
+    }, [user, gUser, navigate])
+
     if (loading || gLoading || updating) {
         return <Loading />
-    }
-
-    if (user || gUser) {
-        navigate("/appointment");
     }
 
     if (error || gError || updateError) {
