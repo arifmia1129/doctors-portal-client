@@ -32,6 +32,15 @@ const Navbar = () => {
                 isActive ? "bg-gradient-to-r from-secondary to-primary text-white" : ""
             } to="/contact">Contact Us</NavLink>
         </li>
+
+        {
+            user &&
+            <li>
+                <NavLink className={({ isActive }) =>
+                    isActive ? "bg-gradient-to-r from-secondary to-primary text-white" : ""
+                } to="/dashboard">Dashboard</NavLink>
+            </li>
+        }
         <li>
             {
                 user ?
