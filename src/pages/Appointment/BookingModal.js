@@ -1,3 +1,4 @@
+import { success } from 'daisyui/src/colors';
 import { format } from 'date-fns';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -32,10 +33,13 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
 
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledge && data.insertedId) {
-                    toast.success("Your booking successfully added!");
-                    setTreatment(null);
+                if (data.success) {
+                    toast.success(`Confirm your booking on, ${format(date, 'PP')}, ${timeSlot}`);
                 }
+                else {
+                    toast.error(`Already have a booking on, ${data.date}, ${data.time}`);
+                }
+                setTreatment(null);
             })
     }
     return (
