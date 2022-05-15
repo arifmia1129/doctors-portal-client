@@ -30,10 +30,10 @@ const SignUp = () => {
     };
 
     useEffect(() => {
-        if (user || gUser) {
-            // navigate("/appointment");
+        if (token) {
+            navigate("/appointment");
         }
-    }, [user, gUser, navigate])
+    }, [token, navigate]);
 
     if (loading || gLoading || updating) {
         return <Loading />

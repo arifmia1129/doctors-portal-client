@@ -44,7 +44,10 @@ const Navbar = () => {
         <li>
             {
                 user ?
-                    <button onClick={() => signOut(auth)} className="btn btn-ghost">Sign Out</button>
+                    <button onClick={() => {
+                        localStorage.removeItem("token")
+                        signOut(auth)
+                    }} className="btn btn-ghost">Sign Out</button>
                     :
                     <NavLink className={({ isActive }) =>
                         isActive ? "bg-gradient-to-r from-secondary to-primary text-white" : ""
