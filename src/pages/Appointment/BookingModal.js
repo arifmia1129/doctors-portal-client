@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const BookingModal = ({ treatment, date, setTreatment }) => {
@@ -9,12 +10,33 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const timeSlot = e.target.slot.value;
+        const contact = e.target.phone.value;
         const bookingDetail = {
+            treatmentId: _id,
             treatment: name,
-            time: timeSlot
+            date: format(date, 'PP'),
+            time: timeSlot,
+            patientName: user.displayName,
+            patientEmail: user.email,
+            contact
         }
-        console.log(bookingDetail);
-        setTreatment(null);
+
+        // Send booking information to database
+        fetch("http://localhost:5000/booking", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(bookingDetail)
+        })
+
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledge && data.insertedId) {
+                    toast.success("Your booking successfully added!");
+                    setTreatment(null);
+                }
+            })
     }
     return (
         <div>
