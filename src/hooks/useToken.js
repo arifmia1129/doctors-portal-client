@@ -10,7 +10,7 @@ const useToken = user => {
         }
 
         if (user) {
-            fetch(`http://localhost:5000/user/${email}`, {
+            fetch(`https://lit-inlet-69073.herokuapp.com/user/${email}`, {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json"

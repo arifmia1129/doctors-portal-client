@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import chair from "../../../assets/images/chair.png";
 import PrimaryButton from '../../Shared/PrimaryButton/PrimaryButton';
 
@@ -12,7 +13,7 @@ const Banner = () => {
                 <div>
                     <h1 className="text-4xl font-bold text-accent">Your New Smile Starts Here</h1>
                     <p className="py-6">We want to make you laugh. I want to see your beautiful smile. I want to show your beautiful smile to the world. Let's laugh together.</p>
-                    <PrimaryButton>Get Started</PrimaryButton>
+                    <PrimaryButton><Link to="/appointment">Get Started</Link></PrimaryButton>
                 </div>
             </div>
         </div>

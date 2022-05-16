@@ -1,6 +1,7 @@
 import React from 'react';
 import PrimaryButton from '../../Shared/PrimaryButton/PrimaryButton';
 import doctor from "../../../assets/images/doctor.png";
+import { Link } from 'react-router-dom';
 
 const AppointmentBanner = () => {
     return (
@@ -16,7 +17,7 @@ const AppointmentBanner = () => {
                             <h1 className="lg:text-5xl text-4xl font-bold text-white">Make an appointment Today</h1>
                             <p className="py-6">If you want our best service, doctor and others please make sure doctor appointment. If you want to doctor appointment please click under the button and follow instruction. It's very simple step. So try now!</p>
                         </div>
-                        <PrimaryButton>Get Started</PrimaryButton>
+                        <PrimaryButton><Link to="/appointment">Get Started</Link></PrimaryButton>
                     </div>
                 </div>
             </div>

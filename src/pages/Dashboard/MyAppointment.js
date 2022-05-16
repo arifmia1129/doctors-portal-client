@@ -10,7 +10,7 @@ const MyAppointment = () => {
     const [appointments, setAppointments] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
-        fetch(`http://localhost:5000/booking?email=${user?.email}`, {
+        fetch(`https://lit-inlet-69073.herokuapp.com/booking?email=${user?.email}`, {
             method: "GET",
             headers: {
                 "authorization": `Bearer ${localStorage.getItem("token")}`
