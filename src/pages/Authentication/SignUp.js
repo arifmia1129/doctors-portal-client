@@ -99,7 +99,7 @@ const SignUp = () => {
                                 {...register("password", {
                                     required: {
                                         value: true,
-                                        message: "Email field is required."
+                                        message: "Password field is required."
                                     },
                                     minLength: {
                                         value: 6,
