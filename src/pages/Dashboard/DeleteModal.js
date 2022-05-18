@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 const DeleteModal = ({ deleteDoctor, refetch, setLoading, setDeleteDoctor }) => {
     const handleDelete = doctor => {
         setLoading(true);
-        fetch(`http://localhost:5000/doctor/${doctor?.email}`, {
+        fetch(`https://lit-inlet-69073.herokuapp.com/doctor/${doctor?.email}`, {
             method: "DELETE",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`

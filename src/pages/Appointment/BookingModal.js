@@ -24,7 +24,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
         }
 
         // Send booking information to database
-        fetch("http://localhost:5000/booking", {
+        fetch("https://lit-inlet-69073.herokuapp.com/booking", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

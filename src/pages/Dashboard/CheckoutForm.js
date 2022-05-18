@@ -1,17 +1,19 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ appointment }) => {
-    const { price, treatment, patientName, patientEmail, _id } = appointment;
+    const { price, treatment, patientName, patientEmail, _id, date, time } = appointment;
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState("");
     const [cardSuccess, setCardSuccess] = useState("");
     const [tnxId, setTnxId] = useState("");
     const [clientSecret, setClientSecret] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://lit-inlet-69073.herokuapp.com/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -66,9 +68,12 @@ const CheckoutForm = ({ appointment }) => {
                 appointmentFor: treatment,
                 patientName,
                 patientEmail,
-                tnxId: paymentIntent?.id
+                tnxId: paymentIntent?.id,
+                date,
+                time,
+                price
             }
-            fetch(`http://localhost:5000/booking/${_id}`, {
+            fetch(`https://lit-inlet-69073.herokuapp.com/booking/${_id}`, {
                 method: "PATCH",
                 headers: {
                     "content-type": "application/json",
@@ -114,8 +119,11 @@ const CheckoutForm = ({ appointment }) => {
                 </div>
             }
 
-            <button className='btn btn-success btn-xs' type="submit" disabled={!stripe || !clientSecret}>
+            <button className='btn btn-success btn-xs text-white font-bold' type="submit" disabled={!stripe || !clientSecret}>
                 Pay
+            </button>
+            <button onClick={() => navigate("/dashboard")} className='btn btn-primary btn-xs text-white font-bold ml-2'>
+                Dashboard
             </button>
         </form>
     );

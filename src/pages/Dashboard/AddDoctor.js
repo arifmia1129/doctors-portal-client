@@ -9,7 +9,7 @@ const AddDoctor = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const { isLoading, data: services } = useQuery('available', () =>
-        fetch("http://localhost:5000/service").then(res =>
+        fetch("https://lit-inlet-69073.herokuapp.com/service").then(res =>
             res.json()
         )
     )
@@ -40,7 +40,7 @@ const AddDoctor = () => {
                         specialty: data.specialty,
                         image
                     }
-                    fetch("http://localhost:5000/doctor", {
+                    fetch("https://lit-inlet-69073.herokuapp.com/doctor", {
                         method: "POST",
                         headers: {
                             "content-type": "application/json",

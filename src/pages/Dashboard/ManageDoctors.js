@@ -7,7 +7,7 @@ import Doctor from "./Doctor";
 const ManageDoctors = () => {
     const [deleteDoctor, setDeleteDoctor] = useState(null);
     const [loading, setLoading] = useState(false);
-    const { data: doctors, isLoading, refetch } = useQuery("doctors", () => fetch("http://localhost:5000/doctor", {
+    const { data: doctors, isLoading, refetch } = useQuery("doctors", () => fetch("https://lit-inlet-69073.herokuapp.com/doctor", {
         headers: {
             authorization: `Bearer ${localStorage.getItem("token")}`
         }

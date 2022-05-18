@@ -10,7 +10,7 @@ const stripePromise = loadStripe('pk_test_51L0drqHjlyVvU0H8WCq85L5S01GNgzi6FPnNq
 
 const Payment = () => {
     const { aId } = useParams();
-    const { data: appointment, isLoading } = useQuery(["payment", aId], () => fetch(`http://localhost:5000/booking/${aId}`, {
+    const { data: appointment, isLoading } = useQuery(["payment", aId], () => fetch(`https://lit-inlet-69073.herokuapp.com/booking/${aId}`, {
         headers: {
             authorization: `Bearer ${localStorage.getItem("token")}`
         }
