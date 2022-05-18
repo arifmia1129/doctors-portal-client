@@ -5,8 +5,7 @@ import DeleteModal from './DeleteModal';
 import Doctor from "./Doctor";
 
 const ManageDoctors = () => {
-    const [modalStatus, setModalStatus] = useState(false);
-    const [deleteDoctor, setDeleteDoctor] = useState("");
+    const [deleteDoctor, setDeleteDoctor] = useState(null);
     const [loading, setLoading] = useState(false);
     const { data: doctors, isLoading, refetch } = useQuery("doctors", () => fetch("http://localhost:5000/doctor", {
         headers: {
@@ -18,8 +17,8 @@ const ManageDoctors = () => {
     }
     return (
         <div>
-            <div class="overflow-x-auto w-full">
-                <table class="table w-full">
+            <div className="overflow-x-auto w-full">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -32,7 +31,6 @@ const ManageDoctors = () => {
                             doctors?.map(doctor => <Doctor
                                 key={doctor._id}
                                 doctor={doctor}
-                                setModalStatus={setModalStatus}
                                 setDeleteDoctor={setDeleteDoctor}
                             />)
                         }
@@ -40,8 +38,9 @@ const ManageDoctors = () => {
                 </table>
             </div>
             {
-                modalStatus && <DeleteModal setLoading={setLoading} refetch={refetch} deleteDoctor={deleteDoctor} />
+                deleteDoctor && <DeleteModal setLoading={setLoading} refetch={refetch} deleteDoctor={deleteDoctor} setDeleteDoctor={setDeleteDoctor} />
             }
+
         </div>
     );
 };

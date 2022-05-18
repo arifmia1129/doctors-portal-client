@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
-    const { slots, name, _id } = treatment;
+    const { slots, name, _id, price } = treatment;
     const [user] = useAuthState(auth);
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -15,6 +15,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
         const bookingDetail = {
             treatmentId: _id,
             treatment: name,
+            price,
             date: format(date, 'PP'),
             time: timeSlot,
             patientName: user.displayName,
@@ -23,7 +24,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
         }
 
         // Send booking information to database
-        fetch("https://lit-inlet-69073.herokuapp.com/booking", {
+        fetch("http://localhost:5000/booking", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -52,6 +53,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
                     <h3 className="font-bold text-xl text-secondary">{treatment.name}</h3>
                     <form className='grid grid-cols-1 gap-3 justify-items-center mt-5' onSubmit={handleSubmit}>
                         <input disabled type="text" value={format(date, 'PP')} className="input input-bordered w-full max-w-xs" />
+                        <input disabled type="text" value={`${price} tk only`} className="input input-bordered w-full max-w-xs" />
                         <select name='slot' className="select select-bordered w-full max-w-xs">
 
                             {
